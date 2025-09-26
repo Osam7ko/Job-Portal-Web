@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css} " th:rel="stylesheet"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/styles.css}" type="text/css"/>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Profile Setup</title>
+</head>
+
+<body>
+<div class="row" style="margin-right:0">
+    <div class="col-5 coffee_mug_background">
+        <div class="logo_left mt-3 pt-4 ms-5 pl-5">
+            <h2 class="logo" style="color: white">findjobs <img alt="Logo" class="footer-logo"
+                                                                src="/assets/logosama.svg"><span
+                    class="logo_com">.com</span>
+            </h2>
+        </div>
+    </div>
+    <div class=" col-7">
+        <div class="myForm">
+            <form enctype="multipart/form-data" method="post" th:action="@{/recruiter-profile/addNew}"
+                  th:object="${profile}"
+            >
+                <div class="row gutters ">
+                    <div class="row mt-5">
+                        <div class="col-md-12">
+                            <div class="d-flex justify-content-center ">
+                                <h1 class="heading_font font-weight-bold">
+                                    Recruiter
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <h2 class="d-flex justify-content-center heading_font">
+                                        Set up your Profile
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="alert alert-warning" th:if="${message}" th:text="${message}"></div>
+                            <div class="card-body ms-2.5">
+                                <label class="heading_font font_sub_heading_color">Name</label>
+                                <div class="row ">
+                                    <div class="col-md-6 pr-1">
+                                        <input class="form-control" id="firstName" name="firstName"
+                                               placeholder="First Name" th:field="*{firstName}" type="text"/>
+                                    </div>
+                                    <div class="col-md-6 pl-1">
+                                        <input class="form-control" id="lastName" name="lastName"
+                                               placeholder="Last Name" th:field="*{lastName}" type="text"/>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-4 pr-1">
+                                        <input class="form-control" name="city" placeholder="City" th:field="*{city}"
+                                               type="text"/>
+                                    </div>
+                                    <div class="col-md-4 px-1">
+                                        <input class="form-control" name="state" placeholder="State" th:field="*{state}"
+                                               type="text"/>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+                                        <input class="form-control" name="country" placeholder="Country"
+                                               th:field="*{country}"
+                                               type="text"/>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col">
+                                        <input class="form-control" id="company" name="company" placeholder="Company"
+                                               th:field="*{company}" type="text"/>
+                                    </div>
+                                </div>
+                                <label class="heading_font font_sub_heading_color mt-2">Profile Photo</label>
+                                <div class="row">
+
+                                    <div class="col">
+                                        <input accept="image/png, image/jpeg" class="form-control" name="image"
+                                               type="file"/>
+                                        <input class="form-control" hidden name="profilePhoto"
+                                               th:field="*{profilePhoto}" type="text"/>
+                                    </div>
+                                </div>
+                                <!-- LinkedIn URL -->
+                                <label class="heading_font font_sub_heading_color mt-2">LinkedIn</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control"
+                                               id="linkedInUrl"
+                                               name="linkedInUrl"
+                                               placeholder="https://www.linkedin.com/in/your-handle"
+                                               th:field="*{linkedInUrl}"
+                                               type="url"/>
+                                    </div>
+                                </div>
+
+                                <!-- Company Proof (upload) -->
+                                <!-- Company Proof (optional) -->
+                                <label class="heading_font font_sub_heading_color mt-2">Company Proof</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <input accept="image/png, image/jpeg, application/pdf"
+                                               class="form-control"
+                                               name="companyProofImage"
+                                               type="file"/>
+                                        <!-- Optional hidden field to keep/restore an existing saved URL on edit -->
+                                        <input class="form-control" hidden th:field="*{companyProofUrl}" type="text"/>
+                                        <small class="text-muted">Optional (badge, business card, offer letter,
+                                            etc.).</small>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col d-flex justify-content-center">
+                                        <button class="btn btn-primary base_button px-4 py-2" id="submit2" name="submit"
+                                                type="submit">Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script th:src="@{/webjars/jquery/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}" type="text/javascript"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/main.js}" type="text/javascript"></script>
+
+</html>
