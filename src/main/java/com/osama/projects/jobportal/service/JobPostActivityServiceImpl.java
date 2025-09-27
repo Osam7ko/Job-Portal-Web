@@ -37,4 +37,9 @@ public class JobPostActivityServiceImpl implements JobPostActivityService {
         }
         return recruiterJobsDtosList;
     }
+
+    @Override
+    public JobPostActivity getOne(int id) {
+        return jobPostActivityRepository.findById(id).orElseThrow(() -> new RuntimeException("Job not found"));
+    }
 }

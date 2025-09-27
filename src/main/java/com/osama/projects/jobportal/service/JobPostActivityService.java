@@ -10,4 +10,6 @@ public interface JobPostActivityService {
     JobPostActivity addNew(JobPostActivity jobPostActivity);
 
     List<RecruiterJobsDto> getRecruiterJobs(int recruiter);
+
+    JobPostActivity getOne(int id);
 }
