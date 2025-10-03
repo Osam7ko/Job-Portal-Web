@@ -427,18 +427,157 @@ div.centerCandidate {
   font-weight: 700;
 }
 
-mr-1 {
+.mr-1 {
   margin-right: 0.25rem;
 }
-mr-2 {
+.mr-2 {
   margin-right: 0.5rem;
 }
-mr-3 {
+.mr-3 {
   margin-right: 0.75rem;
 }
-mr-4 {
+.mr-4 {
   margin-right: 1rem;
 }
-mr-5 {
+.mr-5 {
   margin-right: 1.25rem;
+}
+
+/* Enhanced Profile Page Styles */
+.profile-section {
+  margin-bottom: 2rem;
+}
+
+.profile-section-header {
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-card {
+  background: #ffffff;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.profile-card:hover {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* Form enhancements */
+.form-control:focus,
+.form-select:focus {
+  border-color: #274a72;
+  box-shadow: 0 0 0 0.2rem rgba(39, 74, 114, 0.15);
+}
+
+.form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+/* Button enhancements */
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.btn-outline-primary {
+  border-color: #274a72;
+  color: #274a72;
+}
+
+.btn-outline-primary:hover {
+  background-color: #274a72;
+  border-color: #274a72;
+  color: white;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .myForm > form {
+    padding: 1.5rem !important;
+  }
+  
+  .section-title {
+    font-size: 1rem;
+  }
+  
+  .repeater-item {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .pill {
+    font-size: 0.75rem;
+    padding: 0.375rem 1rem;
+  }
+  
+  .heading_font {
+    font-size: 1.5rem !important;
+  }
+  
+  .base_button {
+    padding: 0.75rem 2rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Smooth transitions */
+.collapse-section {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Loading state */
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+  border-width: 0.15em;
+}
+
+/* File input styling */
+input[type="file"] {
+  padding: 0.5rem;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background: #274a72;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: all 0.2s ease;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background: #1e3a5f;
+}
+
+/* Accessibility improvements */
+.form-control:focus,
+.form-select:focus,
+.btn:focus {
+  outline: 2px solid #274a72;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .coffee_mug_background,
+  .btn,
+  button {
+    display: none !important;
+  }
+  
+  .card-modern {
+    box-shadow: none;
+    border: 1px solid #dee2e6;
+  }
 }

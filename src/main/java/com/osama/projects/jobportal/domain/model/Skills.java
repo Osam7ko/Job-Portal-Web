@@ -32,5 +32,5 @@ public class Skills {
     private String certificationUrl;
 
     @Column(nullable = true, length = 512)
-    private String certificationUrlPhoto;
+    private String certificationPhotoUrl;
 }

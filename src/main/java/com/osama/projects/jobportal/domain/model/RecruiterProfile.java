@@ -49,7 +49,14 @@ public class RecruiterProfile {
 
     @Transient
     public String getPhotosImagePath() {
-        if (profilePhoto == null) return null;
+        if (profilePhoto == null || userAccountId <= 0) return null;
         return "/photos/recruiter/" + userAccountId + "/" + profilePhoto;
+    }
+
+    @Transient
+    public String getCompanyProofPath() {
+        if (companyProofUrl == null || userAccountId <= 0) return null;
+        // put proofs in a subfolder to keep things tidy
+        return "/photos/recruiter/" + userAccountId + "/proof/" + companyProofUrl;
     }
 }

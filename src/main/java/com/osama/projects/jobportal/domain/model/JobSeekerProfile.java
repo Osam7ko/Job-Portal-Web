@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ import java.util.List;
 public class JobSeekerProfile {
 
     @Id
-    private int userAccountId;
+    private Integer userAccountId;
 
     @OneToOne
     @JoinColumn(name = "user_account_id")
@@ -36,8 +37,6 @@ public class JobSeekerProfile {
 
     private String resume;
 
-    private String workAuthorization;
-
     @Column(nullable = true, length = 512)
     private String profilePhoto;
 
@@ -55,7 +54,26 @@ public class JobSeekerProfile {
     @OneToMany(targetEntity = Skills.class, cascade = CascadeType.ALL, mappedBy = "profile")
     private List<Skills> skills;
 
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<JobSeekerEducation> educations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<JobSeekerExperience> experiences = new ArrayList<>();
+
     public JobSeekerProfile(Users users) {
         this.usersId = users;
+    }
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (profilePhoto == null || userAccountId == null) return null;
+        return "/photos/candidate/" + userAccountId + "/" + profilePhoto;
+    }
+
+    @Transient
+    public String getResumePath() {
+        if (resume == null || userAccountId == null) return null;
+        // keep docs separate from photos
+        return "/docs/candidate/" + userAccountId + "/" + resume;
     }
 }
