@@ -9,8 +9,10 @@ import com.osama.projects.jobportal.repository.JobPostActivityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -41,5 +43,16 @@ public class JobPostActivityServiceImpl implements JobPostActivityService {
     @Override
     public JobPostActivity getOne(int id) {
         return jobPostActivityRepository.findById(id).orElseThrow(() -> new RuntimeException("Job not found"));
+    }
+
+    @Override
+    public List<JobPostActivity> getAll() {
+        return jobPostActivityRepository.findAll();
+    }
+
+    @Override
+    public List<JobPostActivity> search(String job, String location, List<String> type, List<String> remote, LocalDate searchDate) {
+        return Objects.isNull(searchDate) ? jobPostActivityRepository.searchWithoutDate(job, location, remote, type)
+                : jobPostActivityRepository.search(job, location, remote, type, searchDate);
     }
 }
