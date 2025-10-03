@@ -9,4 +9,6 @@ public interface JobSeekerProfileService {
     Optional<JobSeekerProfile> getOne(Integer id);
 
     JobSeekerProfile save(JobSeekerProfile profile);
+
+    JobSeekerProfile getCurrentSeekerProfile();
 }

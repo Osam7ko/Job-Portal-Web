@@ -17,4 +17,6 @@ public interface JobPostActivityService {
     List<JobPostActivity> getAll();
 
     List<JobPostActivity> search(String job, String location, List<String> list, List<String> list1, LocalDate searchDate);
+
+    void save(JobPostActivity db);
 }

@@ -55,4 +55,9 @@ public class JobPostActivityServiceImpl implements JobPostActivityService {
         return Objects.isNull(searchDate) ? jobPostActivityRepository.searchWithoutDate(job, location, remote, type)
                 : jobPostActivityRepository.search(job, location, remote, type, searchDate);
     }
+
+    @Override
+    public void save(JobPostActivity db) {
+        jobPostActivityRepository.save(db);
+    }
 }

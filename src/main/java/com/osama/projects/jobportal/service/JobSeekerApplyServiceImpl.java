@@ -24,4 +24,9 @@ public class JobSeekerApplyServiceImpl implements JobSeekerApplyService {
     public List<JobSeekerApply> getJobCandidates(JobPostActivity job) {
         return jobPostApplyRepository.findByJobPostActivity(job);
     }
+
+    @Override
+    public void save(JobSeekerApply apply) {
+        jobPostApplyRepository.save(apply);
+    }
 }

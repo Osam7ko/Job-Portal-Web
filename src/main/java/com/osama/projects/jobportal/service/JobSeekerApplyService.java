@@ -13,4 +13,5 @@ public interface JobSeekerApplyService {
 
     List<JobSeekerApply> getJobCandidates(JobPostActivity job);
 
+    void save(JobSeekerApply apply);
 }
