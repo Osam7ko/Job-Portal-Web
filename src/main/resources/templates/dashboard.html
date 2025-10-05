@@ -271,13 +271,17 @@
                         </div>
 
                         <div class="col-md-4 text-center">
-                            <label th:text="${jobPost.jobLocationId.city + ', ' + jobPost.jobLocationId.state}">
+                            <label th:text="${jobPost.jobLocation != null
+                   ? jobPost.jobLocation.city + ', ' + jobPost.jobLocation.state
+                   : ''}">
                                 City State
                             </label>
                         </div>
 
                         <div class="col-md-4 text-right">
-                            <label th:text="${jobPost.jobCompanyId.name}">
+                            <label th:text="${jobPost.jobCompany != null
+                   ? jobPost.jobCompany.name
+                   : ''}">
                                 Recruiter Company Name
                             </label>
                         </div>

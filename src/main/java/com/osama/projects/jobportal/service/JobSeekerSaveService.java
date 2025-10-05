@@ -11,4 +11,6 @@ public interface JobSeekerSaveService {
     List<JobSeekerSave> getCandidatesJob(JobSeekerProfile userAccountId);
 
     List<JobSeekerSave> getJobCandidates(JobPostActivity job);
+
+    void addNew(JobSeekerSave jobSeekerSave);
 }

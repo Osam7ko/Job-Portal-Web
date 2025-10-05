@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Saved Jobs — findjobs.com</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+
+<body>
+<header class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center ms-3" href="/">
+            <span class="h4 mb-0 heading_font">findjobs</span>
+            <img alt="Logo" class="footer-logo ms-2" src="/assets/logosama.svg">
+            <span class="logo_com h5 ms-1">.com</span>
+        </a>
+
+        <button aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler me-2"
+                data-target="#navbarToggler" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav m-auto">
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="hasAuthority('Job Seeker')" th:href="@{/dashboard/}">
+                        <i class="fas fa-search"></i> Search for Jobs
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="hasAuthority('Job Seeker')" th:href="@{/saved-jobs/}">
+                        <i class="fa-solid fa-bookmark"></i> Saved Jobs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="hasAuthority('Job Seeker')" th:href="@{/job-seeker-profile/}">
+                        <i class="fa-solid fa-user-pen"></i> Edit Profile
+                    </a>
+                </li>
+            </ul>
+
+            <div class="d-flex align-items-center me-3">
+                <img alt="Avatar" class="rounded-circle me-2" height="42"
+                     th:if="${user != null and user.photosImagePath != null}"
+                     th:src="@{${user.photosImagePath}}" width="42"/>
+                <span class="text-white"
+                      th:if="${user != null and user.firstName != null and user.lastName != null}"
+                      th:text="${user.firstName + ' ' + user.lastName}"></span>
+                <button class="myBtn-light ms-3" onclick="window.location.href='/logout'">Logout</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="section">
+    <!-- optional side rail kept for visual balance -->
+    <div class="sidenav px-4 d-none d-md-block"></div>
+
+    <article>
+        <div class="box mb-3">
+            <h1 class="primary-title mb-0">Saved Jobs</h1>
+        </div>
+
+        <div class="box">
+            <div class="text-center py-5" th:if="${#lists.isEmpty(jobPost)}">
+                <i class="fa-regular fa-bookmark fa-2x mb-3"></i>
+                <p class="mb-1">You haven’t saved any jobs yet.</p>
+                <a class="btn btn-sec btn-red mt-2" th:href="@{/dashboard/}">
+                    Find jobs to save
+                </a>
+            </div>
+
+            <div class="box mt-3">
+                <label class="large-label px-3 mb-3">Results</label>
+
+                <th:block th:each="jp : ${jobPost}">
+                    <a style="text-decoration:none; color:black;"
+                       th:href="@{/job-details-apply/{id}(id=${jp.jobPostId})}">
+                        <div class="job-row">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="job-title text-left" th:text="${jp.jobTitle}">Job title</label>
+                                </div>
+
+                                <div class="col-md-4 text-center">
+                                    <label th:text="${jp.jobLocation != null ? jp.jobLocation.city + ', ' + jp.jobLocation.state : ''}">
+                                        City, State
+                                    </label>
+                                </div>
+
+                                <div class="col-md-4 text-right">
+                                    <label th:text="${jp.jobCompany != null ? jp.jobCompany.name : ''}">
+                                        Company
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </th:block>
+            </div>
+        </div>
+    </article>
+</section>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
