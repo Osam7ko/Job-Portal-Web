@@ -5,13 +5,14 @@
       xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Job Seeker Profile Setup</title>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/styles.css}"/>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap"
+          rel="stylesheet"/>
 
     <style>
         /* Enhanced Modern Styling */
@@ -238,11 +239,11 @@
             .coffee_mug_background {
                 display: none !important;
             }
-            
+
             .card-modern {
                 border-radius: 0;
             }
-            
+
             .myForm > form {
                 padding: 1.5rem !important;
             }
@@ -271,7 +272,9 @@
         }
 
         @keyframes spinner {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
@@ -282,7 +285,8 @@
     <div class="col-5 coffee_mug_background d-none d-md-block">
         <div class="logo_left mt-3 pt-4 ms-5 ps-5">
             <h2 class="logo text-white">
-                findjobs <img alt="Logo" class="footer-logo" src="/assets/logosama.svg"><span class="logo_com">.com</span>
+                findjobs <img alt="Logo" class="footer-logo" src="/assets/logosama.svg"><span
+                    class="logo_com">.com</span>
             </h2>
         </div>
     </div>
@@ -290,13 +294,13 @@
     <!-- Right form panel -->
     <div class="col-12 col-md-7 d-flex align-items-start justify-content-center py-4">
         <div class="myForm w-100">
-            <form class="card card-modern p-4 p-md-5 w-100 mx-auto" 
+            <form class="card card-modern p-4 p-md-5 w-100 mx-auto"
                   enctype="multipart/form-data"
+                  id="profileForm"
                   method="post"
                   style="max-width:900px"
                   th:action="@{/job-seeker-profile/addNew}"
-                  th:object="${profile}"
-                  id="profileForm">
+                  th:object="${profile}">
 
                 <!-- Header -->
                 <div class="text-center mb-4">
@@ -315,49 +319,50 @@
                     </div>
                 </div>
 
-                <input type="hidden" id="user_account_id" th:field="*{userAccountId}"/>
-                
+                <input id="user_account_id" th:field="*{userAccountId}" type="hidden"/>
+
                 <div class="row g-3 mb-4">
                     <div class="col-md-6">
-                        <label class="subtle-label" for="firstName">First Name <span class="text-danger">*</span></label>
-                        <input class="form-control" 
-                               id="firstName" 
-                               placeholder="e.g. Osama" 
+                        <label class="subtle-label" for="firstName">First Name <span
+                                class="text-danger">*</span></label>
+                        <input class="form-control"
+                               id="firstName"
+                               placeholder="e.g. Osama"
+                               required
                                th:field="*{firstName}"
-                               type="text"
-                               required/>
+                               type="text"/>
                     </div>
                     <div class="col-md-6">
                         <label class="subtle-label" for="lastName">Last Name <span class="text-danger">*</span></label>
-                        <input class="form-control" 
-                               id="lastName" 
-                               placeholder="e.g. Khalid" 
+                        <input class="form-control"
+                               id="lastName"
+                               placeholder="e.g. Khalid"
+                               required
                                th:field="*{lastName}"
-                               type="text"
-                               required/>
+                               type="text"/>
                     </div>
                     <div class="col-md-4">
                         <label class="subtle-label" for="city">City</label>
-                        <input class="form-control" 
+                        <input class="form-control"
                                id="city"
-                               placeholder="e.g. Riyadh" 
-                               th:field="*{city}" 
+                               placeholder="e.g. Riyadh"
+                               th:field="*{city}"
                                type="text"/>
                     </div>
                     <div class="col-md-4">
                         <label class="subtle-label" for="state">State</label>
-                        <input class="form-control" 
+                        <input class="form-control"
                                id="state"
-                               placeholder="e.g. Riyadh" 
-                               th:field="*{state}" 
+                               placeholder="e.g. Riyadh"
+                               th:field="*{state}"
                                type="text"/>
                     </div>
                     <div class="col-md-4">
                         <label class="subtle-label" for="country">Country</label>
-                        <input class="form-control" 
+                        <input class="form-control"
                                id="country"
-                               placeholder="e.g. KSA" 
-                               th:field="*{country}" 
+                               placeholder="e.g. KSA"
+                               th:field="*{country}"
                                type="text"/>
                     </div>
                     <div class="col-md-6">
@@ -380,24 +385,24 @@
                         <h3 class="section-title">Education</h3>
                     </div>
                     <div class="form-check form-switch">
-                        <input class="form-check-input" 
-                               type="checkbox" 
+                        <input class="form-check-input"
                                id="hasEducation"
-                               th:checked="${#lists.size(profile.educations) > 0}">
+                               th:checked="${#lists.size(profile.educations) > 0}"
+                               type="checkbox">
                         <label class="form-check-label" for="hasEducation">
                             I have education to add
                         </label>
                     </div>
                 </div>
 
-                <div id="educationSection" 
-                     class="collapse-section"
+                <div class="collapse-section"
+                     id="educationSection"
                      th:classappend="${#lists.size(profile.educations) > 0 ? '' : 'd-none'}">
-                    
+
                     <div class="education-container">
                         <!-- Existing education entries -->
                         <div class="repeater-item" th:each="edu, iter : *{educations}">
-                            <input type="hidden" th:field="*{educations[__${iter.index}__].id}"/>
+                            <input th:field="*{educations[__${iter.index}__].id}" type="hidden"/>
                             <div class="row g-3">
                                 <div class="col-md-3">
                                     <label class="subtle-label">Education Level</label>
@@ -412,7 +417,7 @@
                                     <label class="subtle-label">Institution Name</label>
                                     <input class="form-control"
                                            placeholder="e.g. Imam University"
-                                           th:field="*{educations[__${iter.index}__].institutionName}" 
+                                           th:field="*{educations[__${iter.index}__].institutionName}"
                                            type="text"/>
                                 </div>
                                 <div class="col-md-4">
@@ -444,53 +449,53 @@
                         <h3 class="section-title">Work Experience</h3>
                     </div>
                     <div class="form-check form-switch">
-                        <input class="form-check-input" 
-                               type="checkbox" 
+                        <input class="form-check-input"
                                id="hasExperience"
-                               th:checked="${#lists.size(profile.experiences) > 0}">
+                               th:checked="${#lists.size(profile.experiences) > 0}"
+                               type="checkbox">
                         <label class="form-check-label" for="hasExperience">
                             I have experience to add
                         </label>
                     </div>
                 </div>
 
-                <div id="experienceSection" 
-                     class="collapse-section"
+                <div class="collapse-section"
+                     id="experienceSection"
                      th:classappend="${#lists.size(profile.experiences) > 0 ? '' : 'd-none'}">
-                    
+
                     <div class="experience-container">
                         <!-- Existing experience entries -->
                         <div class="repeater-item" th:each="exp, iter : *{experiences}">
-                            <input type="hidden" th:field="*{experiences[__${iter.index}__].id}"/>
+                            <input th:field="*{experiences[__${iter.index}__].id}" type="hidden"/>
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <label class="subtle-label">Company Name</label>
-                                    <input class="form-control" 
+                                    <input class="form-control"
                                            placeholder="e.g. Tech Corp"
-                                           th:field="*{experiences[__${iter.index}__].company}" 
+                                           th:field="*{experiences[__${iter.index}__].company}"
                                            type="text"/>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="subtle-label">Role/Position</label>
-                                    <input class="form-control" 
+                                    <input class="form-control"
                                            placeholder="e.g. Backend Developer"
-                                           th:field="*{experiences[__${iter.index}__].roleTitle}" 
+                                           th:field="*{experiences[__${iter.index}__].roleTitle}"
                                            type="text"/>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="subtle-label">Years</label>
-                                    <input class="form-control" 
+                                    <input class="form-control"
                                            min="0"
-                                           th:field="*{experiences[__${iter.index}__].years}" 
+                                           th:field="*{experiences[__${iter.index}__].years}"
                                            type="number"/>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="subtle-label">Proof <small>(optional)</small></label>
-                                    <input accept="application/pdf,image/*" 
-                                           class="form-control form-control-sm" 
+                                    <input accept="application/pdf,image/*"
+                                           class="form-control form-control-sm"
                                            name="experienceProofs"
                                            type="file"/>
-                                    <input type="hidden" th:field="*{experiences[__${iter.index}__].proofFile}"/>
+                                    <input th:field="*{experiences[__${iter.index}__].proofFile}" type="hidden"/>
                                 </div>
                             </div>
                         </div>
@@ -517,19 +522,19 @@
                 <div class="skills-container">
                     <!-- Existing skills -->
                     <div class="repeater-item" th:each="skill, iterStat : *{skills}">
-                        <input type="hidden" th:field="*{skills[__${iterStat.index}__].id}"/>
+                        <input th:field="*{skills[__${iterStat.index}__].id}" type="hidden"/>
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label class="subtle-label">Skill Name</label>
-                                <input class="form-control" 
-                                       placeholder="e.g. Java, Python, React" 
+                                <input class="form-control"
+                                       placeholder="e.g. Java, Python, React"
                                        th:field="*{skills[__${iterStat.index}__].name}"
                                        type="text"/>
                             </div>
                             <div class="col-md-4">
                                 <label class="subtle-label">Years of Experience</label>
                                 <input class="form-control"
-                                       placeholder="e.g. 3" 
+                                       placeholder="e.g. 3"
                                        th:field="*{skills[__${iterStat.index}__].yearsOfExperience}"
                                        type="text"/>
                             </div>
@@ -562,30 +567,30 @@
                         <label class="subtle-label" for="linkedInUrl">
                             <i class="fa fa-linkedin me-2"></i>LinkedIn Profile
                         </label>
-                        <input class="form-control" 
+                        <input class="form-control"
                                id="linkedInUrl"
-                               placeholder="https://linkedin.com/in/..." 
-                               th:field="*{linkedInUrl}" 
+                               placeholder="https://linkedin.com/in/..."
+                               th:field="*{linkedInUrl}"
                                type="url"/>
                     </div>
                     <div class="col-md-4">
                         <label class="subtle-label" for="githubUrl">
                             <i class="fa fa-github me-2"></i>GitHub Profile
                         </label>
-                        <input class="form-control" 
+                        <input class="form-control"
                                id="githubUrl"
-                               placeholder="https://github.com/..." 
-                               th:field="*{githubUrl}" 
+                               placeholder="https://github.com/..."
+                               th:field="*{githubUrl}"
                                type="url"/>
                     </div>
                     <div class="col-md-4">
                         <label class="subtle-label" for="portfolioUrl">
                             <i class="fa fa-globe me-2"></i>Portfolio Website
                         </label>
-                        <input class="form-control" 
+                        <input class="form-control"
                                id="portfolioUrl"
-                               placeholder="https://..." 
-                               th:field="*{portfolioUrl}" 
+                               placeholder="https://..."
+                               th:field="*{portfolioUrl}"
                                type="url"/>
                     </div>
                 </div>
@@ -606,21 +611,21 @@
                         <label class="subtle-label">
                             <i class="fa fa-camera me-2"></i>Profile Photo
                         </label>
-                        
+
                         <div class="image-preview-container" id="photoPreviewContainer">
-                            <img id="photoPreview" 
-                                 class="image-preview" 
+                            <img alt="Profile Photo"
+                                 class="image-preview"
+                                 id="photoPreview"
                                  th:if="${profile.photosImagePath != null}"
-                                 th:src="@{${profile.photosImagePath}}"
-                                 alt="Profile Photo"/>
+                                 th:src="@{${profile.photosImagePath}}"/>
                         </div>
-                        
-                        <input accept="image/png, image/jpeg, image/jpg" 
-                               class="form-control mt-3" 
+
+                        <input accept="image/png, image/jpeg, image/jpg"
+                               class="form-control mt-3"
                                id="profilePhotoInput"
-                               name="image" 
+                               name="image"
                                type="file"/>
-                        <input type="hidden" th:field="*{profilePhoto}"/>
+                        <input th:field="*{profilePhoto}" type="hidden"/>
                         <small class="text-muted d-block mt-2">
                             <i class="fa fa-info-circle me-1"></i>Accepted formats: JPG, PNG (Max 5MB)
                         </small>
@@ -629,20 +634,24 @@
                     <!-- Resume -->
                     <div class="col-md-6">
                         <label class="subtle-label">
-                            <i class="fa fa-file-pdf me-2"></i>Resume/CV <span class="text-danger" th:if="${profile.resume == null}">*</span>
+                            <i class="fa fa-file-pdf me-2"></i>Resume/CV
+                            <span class="text-danger" th:if="${profile.resume == null}">*</span>
                         </label>
-                        
-                        <div class="mb-3" th:if="${profile.resumePath != null}">
-                            <a class="resume-link" target="_blank" th:href="@{${profile.resumePath}}">
+
+                        <!-- Show a link if a resume is already on file -->
+                        <div class="mb-3"
+                             th:if="${profile.resume != null and !#strings.isEmpty(profile.resume)}">
+                            <a class="resume-link" target="_blank"
+                               th:href="@{/download/resume(userId=${profile.userAccountId}, fileName=${profile.resume})}">
                                 <i class="fa fa-file-pdf"></i>
                                 View Current Resume
                             </a>
                         </div>
-                        
-                        <input accept="application/pdf" 
-                               class="form-control" 
-                               name="pdf"
+
+                        <input accept="application/pdf"
+                               class="form-control"
                                id="resumeInput"
+                               name="pdf"
                                sec:authorize="hasAuthority('Job Seeker')"
                                th:required="${profile.resume == null}"
                                type="file"/>
@@ -654,8 +663,8 @@
 
                 <!-- Submit Button -->
                 <div class="text-center mt-4" sec:authorize="hasAuthority('Job Seeker')">
-                    <button class="btn btn-primary base_button" 
-                            id="submitBtn" 
+                    <button class="btn btn-primary base_button"
+                            id="submitBtn"
                             type="submit">
                         <i class="fa fa-save me-2"></i>Save Profile
                     </button>
@@ -672,7 +681,7 @@
 
 <!-- Disable everything for Recruiter viewers -->
 <script sec:authorize="hasAuthority('Recruiter')">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("input, select, button, textarea").prop("disabled", true);
     });
 </script>
@@ -680,15 +689,15 @@
 <!-- Main Profile Form Scripts -->
 <script th:inline="javascript">
     /*<![CDATA[*/
-    $(document).ready(function() {
-        
+    $(document).ready(function () {
+
         // Initialize counters from server-side data
         var skillIndex = /*[[${#lists.size(profile.skills)}]]*/ 0;
         var eduIndex = /*[[${#lists.size(profile.educations)}]]*/ 0;
         var expIndex = /*[[${#lists.size(profile.experiences)}]]*/ 0;
 
         // ===== TOGGLE SECTIONS =====
-        $('#hasEducation').on('change', function() {
+        $('#hasEducation').on('change', function () {
             if (this.checked) {
                 $('#educationSection').removeClass('d-none');
                 // If no education exists, add one
@@ -700,7 +709,7 @@
             }
         });
 
-        $('#hasExperience').on('change', function() {
+        $('#hasExperience').on('change', function () {
             if (this.checked) {
                 $('#experienceSection').removeClass('d-none');
                 // If no experience exists, add one
@@ -713,7 +722,7 @@
         });
 
         // ===== ADD SKILL =====
-        $('#addSkill').on('click', function(e) {
+        $('#addSkill').on('click', function (e) {
             e.preventDefault();
             addSkillRow();
         });
@@ -759,7 +768,7 @@
         }
 
         // ===== ADD EDUCATION =====
-        $('#addEducation').on('click', function(e) {
+        $('#addEducation').on('click', function (e) {
             e.preventDefault();
             addEducationRow();
         });
@@ -809,7 +818,7 @@
         }
 
         // ===== ADD EXPERIENCE =====
-        $('#addExperience').on('click', function(e) {
+        $('#addExperience').on('click', function (e) {
             e.preventDefault();
             addExperienceRow();
         });
@@ -861,11 +870,11 @@
         }
 
         // ===== IMAGE PREVIEW =====
-        $('#profilePhotoInput').on('change', function(e) {
+        $('#profilePhotoInput').on('change', function (e) {
             var file = e.target.files[0];
             if (file) {
                 var reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     var preview = $('#photoPreview');
                     if (preview.length === 0) {
                         $('#photoPreviewContainer').html(
@@ -880,7 +889,7 @@
         });
 
         // ===== FORM SUBMISSION =====
-        $('#profileForm').on('submit', function() {
+        $('#profileForm').on('submit', function () {
             var btn = $('#submitBtn');
             btn.addClass('btn-loading');
             btn.prop('disabled', true);

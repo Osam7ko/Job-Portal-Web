@@ -61,7 +61,9 @@
             </li>
         </ul>
 
-        <img class="rounded-circle me-3" height="50" th:src="@{${user.photosImagePath}}" width="50"/>
+        <img class="rounded-circle me-3" height="50"
+             th:if="${user != null and user.photosImagePath != null}"
+             th:src="@{${user.photosImagePath}}" width="50"/>
         <label class="nav-item nav-link px-2 me-3" th:text="${user.firstName+' '+user.lastName}">John Doe</label>
         <button class="myBtn-light me-5" onclick="window.location.href='/logout'">Logout</button>
     </div>
@@ -149,10 +151,10 @@
                     <div class="col-md-3 centerCandidate">
                         <div class="candidatesApplied">
                             <label>Candidates Applied for Job</label>
-                            <th:block th:each="applyList:${applyList}">
+                            <th:block th:each="a : ${applyList}">
                                 <a class="white"
-                                   th:href="@{/job-seeker-profile/{id}(id=${applyList.userId.userAccountId})}"
-                                   th:text="${applyList.userId.firstName+', '+applyList.userId.lastName}">
+                                   th:href="@{/job-seeker-profile/{id}(id=${a.jobSeekerProfile.userAccountId})}"
+                                   th:text="${a.jobSeekerProfile.firstName + ', ' + a.jobSeekerProfile.lastName}">
                                     FirstName, LastName
                                 </a>
                             </th:block>
